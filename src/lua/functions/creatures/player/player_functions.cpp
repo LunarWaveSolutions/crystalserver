@@ -453,7 +453,6 @@ void PlayerFunctions::init(lua_State* L) {
 	// Novas Functions ProgramaOT
 	Lua::registerMethod(L, "Player", "castInstantSpell", PlayerFunctions::luaPlayerCastInstantSpell);
 
-
 	// OTCR Features
 	Lua::registerMethod(L, "Player", "getMapShader", PlayerFunctions::luaPlayerGetMapShader);
 	Lua::registerMethod(L, "Player", "setMapShader", PlayerFunctions::luaPlayerSetMapShader);
@@ -502,7 +501,6 @@ int PlayerFunctions::luaPlayerCastInstantSpell(lua_State* L) {
 	Lua::pushBoolean(L, false);
 	return 1;
 }
-
 
 int PlayerFunctions::luaPlayerSendCreatureEmblem(lua_State* L) {
 	// player:sendCreatureEmblem(creature)
