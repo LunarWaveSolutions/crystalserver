@@ -433,5 +433,7 @@ class PlayerFunctions {
 	// Novas functions for spell casting ProgramaOT
 	static int luaPlayerCastInstantSpell(lua_State* L);
 
+	static int luaPlayerDropConnection(lua_State* L);
+
 	friend class CreatureFunctions;
 };
