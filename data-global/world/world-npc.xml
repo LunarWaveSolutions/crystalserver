@@ -1761,11 +1761,20 @@
 	<npc centerx="32408" centery="32220" centerz="7" radius="1">
 		<npc name="Hanna" x="0" y="0" z="7" spawntime="60" />
 	</npc>
+	<npc centerx="32361" centery="32222" centerz="7" radius="1">
+		<npc name="The Lootmonger" x="0" y="0" z="7" spawntime="60" />
+	</npc>
 	<npc centerx="32398" centery="32222" centerz="7" radius="1">
 		<npc name="Xodet" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="32066" centery="32225" centerz="7" radius="1">
 		<npc name="Lily" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+	<npc centerx="32361" centery="32226" centerz="7" radius="1">
+		<npc name="Runtel Blackspark" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+	<npc centerx="32378" centery="32241" centerz="7" radius="1">
+		<npc name="Imbuement Assistant" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="32450" centery="32226" centerz="7" radius="1">
 		<npc name="Palomino" x="0" y="0" z="7" spawntime="60" />
@@ -1781,6 +1790,9 @@
 	</npc>
 	<npc centerx="32401" centery="32232" centerz="7" radius="1">
 		<npc name="Pig" x="0" y="0" z="7" spawntime="60" />
+	</npc>
+	<npc centerx="32358" centery="32233" centerz="7" radius="1">
+		<npc name="Cassino" x="0" y="0" z="7" spawntime="60" />
 	</npc>
 	<npc centerx="32342" centery="32235" centerz="7" radius="1">
 		<npc name="Elane" x="0" y="0" z="7" spawntime="60" />

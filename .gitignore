@@ -371,14 +371,13 @@ tasks.json
 config.lua
 client_assertions.txt
 .env
-data-global/world/world.otbm
 
 # Extensions
 *.ini
 *.otb
 *.exe
 *.manifest
-*.rar
+
 monster_count.txt
 
 # SFTP for Sublime
