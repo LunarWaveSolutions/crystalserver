@@ -395,3 +395,7 @@ database_backup
 
 # CLION
 cmake-build-*
+/data-global/world/worldbkp2.otbm
+/data-global/world/world.otbm
+/data-global/world/worldbkp.otbm
+/data-global/world/worldbkp1.otbm

@@ -60,7 +60,7 @@ function playerLoginGlobal.onLogin(player)
 				end
 			end
 		end
-		-- tambÃ©m marca o storage inicial da quest (questline)
+		-- também marca o storage inicial da quest (questline)
 		if quest.startStorageId and quest.startStorageValue then
 			player:setStorageValue(quest.startStorageId, quest.startStorageValue)
 		end
