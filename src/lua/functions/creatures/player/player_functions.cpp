@@ -450,6 +450,9 @@ void PlayerFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "Player", "onClearAllImbuementsOnEtcher", PlayerFunctions::luaPlayerOnClearAllImbuementsOnEtcher);
 	Lua::registerMethod(L, "Player", "sendWeaponProficiencyExperience", PlayerFunctions::luaPlayerSendWeaponProficiencyExperience);
 
+	// Novas Functions ProgramaOT
+	Lua::registerMethod(L, "Player", "castInstantSpell", PlayerFunctions::luaPlayerCastInstantSpell);
+
 	// OTCR Features
 	Lua::registerMethod(L, "Player", "getMapShader", PlayerFunctions::luaPlayerGetMapShader);
 	Lua::registerMethod(L, "Player", "setMapShader", PlayerFunctions::luaPlayerSetMapShader);
@@ -463,6 +466,42 @@ void PlayerFunctions::init(lua_State* L) {
 	MountFunctions::init(L);
 	PartyFunctions::init(L);
 	VocationFunctions::init(L);
+}
+
+// Novas Functions ProgramaOT
+int PlayerFunctions::luaPlayerCastInstantSpell(lua_State* L) {
+	// player:castInstantSpell(words[, speakType]) -> bool
+	const auto &player = Lua::getUserdataShared<Player>(L, 1);
+	if (!player) {
+		Lua::reportErrorFunc(Lua::getErrorDesc(LUA_ERROR_PLAYER_NOT_FOUND));
+		Lua::pushBoolean(L, false);
+		return 1;
+	}
+
+	if (lua_gettop(L) < 2) {
+		Lua::reportErrorFunc("player:castInstantSpell(words[, speakType]) requires at least the words parameter");
+		Lua::pushBoolean(L, false);
+		return 1;
+	}
+
+	std::string words = Lua::getString(L, 2);
+	SpeakClasses type = TALKTYPE_SAY;
+
+	if (lua_gettop(L) >= 3 && lua_type(L, 3) == LUA_TNUMBER) {
+		type = enumFromValue<SpeakClasses>(Lua::getNumber<uint8_t>(L, 3));
+	}
+
+	// Usa o mesmo pipeline que o servidor usa quando o player fala uma spell
+	std::string processedWords = words;
+	TalkActionResult_t result = g_spells().playerSaySpell(player, processedWords);
+
+	if (result == TALKACTION_BREAK) {
+		Lua::pushBoolean(L, player->saySpell(type, processedWords, false));
+		return 1;
+	}
+
+	Lua::pushBoolean(L, false);
+	return 1;
 }
 
 int PlayerFunctions::luaPlayerSendCreatureEmblem(lua_State* L) {

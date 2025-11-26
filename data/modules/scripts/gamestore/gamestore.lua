@@ -10,7 +10,7 @@ dofile(CORE_DIRECTORY .. "/modules/scripts/gamestore/init.lua")
 -- Config
 
 HomeBanners = {
-	images = { "home/banner_armouredarcher.png", "home/banner_podiumoftenacity.png" },
+	images = { "home/ProgramaOTBanner.png", "home/ProgramaOTBanner.png" },
 	delay = 10,
 }
 
@@ -62,7 +62,7 @@ GameStore.Categories = {
 		offers = {
 			{
 				icons = { "Premium_Time_30.png" },
-				name = string.format("30 Days of %s", premiumOfferName),
+				name = string.format("30 Dias of %s", premiumOfferName),
 				price = 250,
 				id = 3030,
 				validUntil = 30,
@@ -6593,7 +6593,7 @@ GameStore.Categories = {
 			},
 			{
 				icons = { "Gold_Pouch.png" },
-				name = "Gold Pouch",
+				name = "loot Pouch",
 				price = 900,
 				itemtype = 23721,
 				count = 1,
