@@ -137,7 +137,6 @@ mType.onThink = function(monster, interval)
 	return true
 end
 
-
 mType.onSay = function(monster, creature, type, message)
 	if type ~= TALKTYPE_SAY then
 		return false
