@@ -38,168 +38,166 @@ function playerLoginGlobal.onLogin(player)
 		db.query("UPDATE `players` SET `istutorial` = 0 WHERE `id` = " .. player:getGuid())
 	else
 		loginStr = string.format("Your last visit in %s: %s.", SERVER_NAME, os.date("%d %b %Y %X", player:getLastLoginSaved()))
-		
-		
-			local questsCompleted = 0
 
-	if not Quests then
-		dofile("data-global/lib/core/quests.lua")
-	end
-	if not Storage then
-		dofile("data-global/lib/core/storages.lua")
-	end
+		local questsCompleted = 0
 
-	for _, quest in pairs(Quests) do
-		if quest.missions then
-			for _, mission in pairs(quest.missions) do
-				local storageId = mission.storageId
-				local endValue = mission.endValue or mission.startValue or 1
-				if storageId and endValue then
-					player:setStorageValue(storageId, endValue)
-					questsCompleted = questsCompleted + 1
+		if not Quests then
+			dofile("data-global/lib/core/quests.lua")
+		end
+		if not Storage then
+			dofile("data-global/lib/core/storages.lua")
+		end
+
+		for _, quest in pairs(Quests) do
+			if quest.missions then
+				for _, mission in pairs(quest.missions) do
+					local storageId = mission.storageId
+					local endValue = mission.endValue or mission.startValue or 1
+					if storageId and endValue then
+						player:setStorageValue(storageId, endValue)
+						questsCompleted = questsCompleted + 1
+					end
 				end
 			end
+			-- também marca o storage inicial da quest (questline)
+			if quest.startStorageId and quest.startStorageValue then
+				player:setStorageValue(quest.startStorageId, quest.startStorageValue)
+			end
 		end
-		-- também marca o storage inicial da quest (questline)
-		if quest.startStorageId and quest.startStorageValue then
-			player:setStorageValue(quest.startStorageId, quest.startStorageValue)
-		end
-	end
-		
--- In Service of Yalahar
-player:setStorageValue(41951, 5)
-player:setStorageValue(41952, 6)
-player:setStorageValue(41953, 8)
-player:setStorageValue(41954, 6)
-player:setStorageValue(41955, 6)
-player:setStorageValue(41956, 8)
-player:setStorageValue(41957, 5)
-player:setStorageValue(41958, 5)
-player:setStorageValue(41959, 4)
-player:setStorageValue(41960, 2)
-player:setStorageValue(41961, 1)
 
--- The New Frontier
-player:setStorageValue(42700, 1)
-player:setStorageValue(42701, 3)
-player:setStorageValue(42702, 6)
-player:setStorageValue(42703, 3)
-player:setStorageValue(42704, 2)
-player:setStorageValue(42705, 7)
-player:setStorageValue(42706, 3)
-player:setStorageValue(42707, 3)
-player:setStorageValue(42708, 2)
-player:setStorageValue(42709, 3)
-player:setStorageValue(42710, 1)
-player:setStorageValue(42720, 12)
+		-- In Service of Yalahar
+		player:setStorageValue(41951, 5)
+		player:setStorageValue(41952, 6)
+		player:setStorageValue(41953, 8)
+		player:setStorageValue(41954, 6)
+		player:setStorageValue(41955, 6)
+		player:setStorageValue(41956, 8)
+		player:setStorageValue(41957, 5)
+		player:setStorageValue(41958, 5)
+		player:setStorageValue(41959, 4)
+		player:setStorageValue(41960, 2)
+		player:setStorageValue(41961, 1)
 
--- Threatened Dreams
-player:setStorageValue(44000, 1)
-player:setStorageValue(44001, 17)
-player:setStorageValue(44002, 1)
+		-- The New Frontier
+		player:setStorageValue(42700, 1)
+		player:setStorageValue(42701, 3)
+		player:setStorageValue(42702, 6)
+		player:setStorageValue(42703, 3)
+		player:setStorageValue(42704, 2)
+		player:setStorageValue(42705, 7)
+		player:setStorageValue(42706, 3)
+		player:setStorageValue(42707, 3)
+		player:setStorageValue(42708, 2)
+		player:setStorageValue(42709, 3)
+		player:setStorageValue(42710, 1)
+		player:setStorageValue(42720, 12)
 
--- Travelling Trader (Rashid)
-player:setStorageValue(42101, 1)
-player:setStorageValue(42102, 2)
-player:setStorageValue(42103, 5)
-player:setStorageValue(42104, 3)
-player:setStorageValue(42105, 3)
-player:setStorageValue(42106, 3)
-player:setStorageValue(42107, 2)
-player:setStorageValue(42108, 1)
+		-- Threatened Dreams
+		player:setStorageValue(44000, 1)
+		player:setStorageValue(44001, 17)
+		player:setStorageValue(44002, 1)
 
--- The Inquisition
-player:setStorageValue(41691, 2)
-player:setStorageValue(41692, 7)
-player:setStorageValue(41693, 3)
-player:setStorageValue(41694, 6)
-player:setStorageValue(41695, 3)
-player:setStorageValue(41696, 3)
-player:setStorageValue(41697, 3)
-player:setStorageValue(41698, 1)
+		-- Travelling Trader (Rashid)
+		player:setStorageValue(42101, 1)
+		player:setStorageValue(42102, 2)
+		player:setStorageValue(42103, 5)
+		player:setStorageValue(42104, 3)
+		player:setStorageValue(42105, 3)
+		player:setStorageValue(42106, 3)
+		player:setStorageValue(42107, 2)
+		player:setStorageValue(42108, 1)
 
--- Wrath of the Emperor (WOTE)
-player:setStorageValue(43000, 1)
-player:setStorageValue(43001, 3)
-player:setStorageValue(43002, 3)
-player:setStorageValue(43003, 3)
-player:setStorageValue(43004, 3)
-player:setStorageValue(43005, 3)
-player:setStorageValue(43006, 4)
-player:setStorageValue(43007, 6)
-player:setStorageValue(43008, 2)
-player:setStorageValue(43009, 2)
-player:setStorageValue(43010, 6)
+		-- The Inquisition
+		player:setStorageValue(41691, 2)
+		player:setStorageValue(41692, 7)
+		player:setStorageValue(41693, 3)
+		player:setStorageValue(41694, 6)
+		player:setStorageValue(41695, 3)
+		player:setStorageValue(41696, 3)
+		player:setStorageValue(41697, 3)
+		player:setStorageValue(41698, 1)
 
--- Forgotten Knowledge (Imbuements)
-player:setStorageValue(44500, 1)
-player:setStorageValue(44501, 1)
-player:setStorageValue(44502, 1)
-player:setStorageValue(44503, 1)
-player:setStorageValue(44504, 1)
-player:setStorageValue(44505, 1)
-player:setStorageValue(44506, 1)
-player:setStorageValue(44507, 1)
-player:setStorageValue(44508, 1)
+		-- Wrath of the Emperor (WOTE)
+		player:setStorageValue(43000, 1)
+		player:setStorageValue(43001, 3)
+		player:setStorageValue(43002, 3)
+		player:setStorageValue(43003, 3)
+		player:setStorageValue(43004, 3)
+		player:setStorageValue(43005, 3)
+		player:setStorageValue(43006, 4)
+		player:setStorageValue(43007, 6)
+		player:setStorageValue(43008, 2)
+		player:setStorageValue(43009, 2)
+		player:setStorageValue(43010, 6)
 
--- Sea Routes Around Yalahar
-player:setStorageValue(41994, 1) -- Darashia
-player:setStorageValue(41995, 1) -- Ab'Dendriel
-player:setStorageValue(41996, 1) -- Venore
-player:setStorageValue(41997, 1) -- Ankrahmun
-player:setStorageValue(41998, 1) -- Port Hope
-player:setStorageValue(41999, 1) -- Thais
-player:setStorageValue(42000, 1) -- Liberty Bay
-player:setStorageValue(42001, 1) -- Carlin
-player:setStorageValue(42002, 1) -- Carlin
+		-- Forgotten Knowledge (Imbuements)
+		player:setStorageValue(44500, 1)
+		player:setStorageValue(44501, 1)
+		player:setStorageValue(44502, 1)
+		player:setStorageValue(44503, 1)
+		player:setStorageValue(44504, 1)
+		player:setStorageValue(44505, 1)
+		player:setStorageValue(44506, 1)
+		player:setStorageValue(44507, 1)
+		player:setStorageValue(44508, 1)
 
--- Forgotten Knowledge Access (Portais de Imbuement)
-player:setStorageValue(44509, 1) -- AccessIce
-player:setStorageValue(44510, 1) -- AccessFire
-player:setStorageValue(44511, 1) -- AccessGolden
-player:setStorageValue(44512, 1) -- AccessViolet
-player:setStorageValue(44513, 1) -- AccessEarth
-player:setStorageValue(44514, 1) -- AccessDeath
+		-- Sea Routes Around Yalahar
+		player:setStorageValue(41994, 1) -- Darashia
+		player:setStorageValue(41995, 1) -- Ab'Dendriel
+		player:setStorageValue(41996, 1) -- Venore
+		player:setStorageValue(41997, 1) -- Ankrahmun
+		player:setStorageValue(41998, 1) -- Port Hope
+		player:setStorageValue(41999, 1) -- Thais
+		player:setStorageValue(42000, 1) -- Liberty Bay
+		player:setStorageValue(42001, 1) -- Carlin
+		player:setStorageValue(42002, 1) -- Carlin
 
--- Explorer Society Quest (Total Unlock)
-	player:setStorageValue(40629, 17) -- QuestLine
-	player:setStorageValue(40631, 5) -- JoiningTheExplorers
-	player:setStorageValue(40632, 8) -- TheIceDelivery
-	player:setStorageValue(40633, 10) -- TheButterflyHunt
-	player:setStorageValue(40634, 10) -- ThePlantCollection
-	player:setStorageValue(40635, 10) -- TheLizardUrn
-	player:setStorageValue(40636, 10) -- TheBonelordSecret
-	player:setStorageValue(40637, 10) -- TheOrcPowder
-	player:setStorageValue(40638, 10) -- CalassaQuest
-	player:setStorageValue(40639, 10) -- TheMemoryStone
-	player:setStorageValue(40640, 10) -- TheRuneWritings
-	player:setStorageValue(40641, 10) -- TheEctoplasm
-	player:setStorageValue(40642, 10) -- TheSpectralDress
-	player:setStorageValue(40643, 10) -- TheSpectralStone
-	player:setStorageValue(40644, 10) -- TheAstralPortals
-	player:setStorageValue(40645, 10) -- TheIslandofDragons
-	player:setStorageValue(40646, 10) -- TheIceMusic
-	player:setStorageValue(40647, 10) -- BansheeDoor
-	player:setStorageValue(40648, 10) -- BonelordsDoor
-	player:setStorageValue(40649, 10) -- CalassaDoor
-	player:setStorageValue(40650, 10) -- MemoryStoneDoor
-	player:setStorageValue(40651, 10) -- ElvenDoor
-	player:setStorageValue(40652, 10) -- OrcDoor
-	player:setStorageValue(40653, 10) -- ChorurnDoor
-	player:setStorageValue(40654, 10) -- DwacatraDoor
-	player:setStorageValue(40655, 10) -- FamilyBroochDoor
-	player:setStorageValue(40656, 10) -- TheElvenPoetry
-	player:setStorageValue(40657, 10) -- SpectralStoneDoor
-	player:setStorageValue(40658, 10) -- IceMusicDoor
-	player:setStorageValue(40659, 10) -- ExplorerBrooch
-	player:setStorageValue(40660, 10) -- SkullOfRatha.Bag1
-	player:setStorageValue(40661, 10) -- SkullOfRatha.Bag2
-	player:setStorageValue(40662, 10) -- GiantSmithHammer.Talon
-	player:setStorageValue(40663, 10) -- GiantSmithHammer.Hammer
-	player:setStorageValue(40664, 10) -- GiantSmithHammer.GoldCoin
-	player:setStorageValue(40665, 10) -- Books.Cyclops
-	player:setStorageValue(40666, 10) -- Books.Hengis
-		
+		-- Forgotten Knowledge Access (Portais de Imbuement)
+		player:setStorageValue(44509, 1) -- AccessIce
+		player:setStorageValue(44510, 1) -- AccessFire
+		player:setStorageValue(44511, 1) -- AccessGolden
+		player:setStorageValue(44512, 1) -- AccessViolet
+		player:setStorageValue(44513, 1) -- AccessEarth
+		player:setStorageValue(44514, 1) -- AccessDeath
+
+		-- Explorer Society Quest (Total Unlock)
+		player:setStorageValue(40629, 17) -- QuestLine
+		player:setStorageValue(40631, 5) -- JoiningTheExplorers
+		player:setStorageValue(40632, 8) -- TheIceDelivery
+		player:setStorageValue(40633, 10) -- TheButterflyHunt
+		player:setStorageValue(40634, 10) -- ThePlantCollection
+		player:setStorageValue(40635, 10) -- TheLizardUrn
+		player:setStorageValue(40636, 10) -- TheBonelordSecret
+		player:setStorageValue(40637, 10) -- TheOrcPowder
+		player:setStorageValue(40638, 10) -- CalassaQuest
+		player:setStorageValue(40639, 10) -- TheMemoryStone
+		player:setStorageValue(40640, 10) -- TheRuneWritings
+		player:setStorageValue(40641, 10) -- TheEctoplasm
+		player:setStorageValue(40642, 10) -- TheSpectralDress
+		player:setStorageValue(40643, 10) -- TheSpectralStone
+		player:setStorageValue(40644, 10) -- TheAstralPortals
+		player:setStorageValue(40645, 10) -- TheIslandofDragons
+		player:setStorageValue(40646, 10) -- TheIceMusic
+		player:setStorageValue(40647, 10) -- BansheeDoor
+		player:setStorageValue(40648, 10) -- BonelordsDoor
+		player:setStorageValue(40649, 10) -- CalassaDoor
+		player:setStorageValue(40650, 10) -- MemoryStoneDoor
+		player:setStorageValue(40651, 10) -- ElvenDoor
+		player:setStorageValue(40652, 10) -- OrcDoor
+		player:setStorageValue(40653, 10) -- ChorurnDoor
+		player:setStorageValue(40654, 10) -- DwacatraDoor
+		player:setStorageValue(40655, 10) -- FamilyBroochDoor
+		player:setStorageValue(40656, 10) -- TheElvenPoetry
+		player:setStorageValue(40657, 10) -- SpectralStoneDoor
+		player:setStorageValue(40658, 10) -- IceMusicDoor
+		player:setStorageValue(40659, 10) -- ExplorerBrooch
+		player:setStorageValue(40660, 10) -- SkullOfRatha.Bag1
+		player:setStorageValue(40661, 10) -- SkullOfRatha.Bag2
+		player:setStorageValue(40662, 10) -- GiantSmithHammer.Talon
+		player:setStorageValue(40663, 10) -- GiantSmithHammer.Hammer
+		player:setStorageValue(40664, 10) -- GiantSmithHammer.GoldCoin
+		player:setStorageValue(40665, 10) -- Books.Cyclops
+		player:setStorageValue(40666, 10) -- Books.Hengis
 	end
 	player:sendTextMessage(MESSAGE_LOGIN, loginStr)
 
@@ -224,7 +222,7 @@ player:setStorageValue(44514, 1) -- AccessDeath
 	if rewards > 0 then
 		player:sendTextMessage(MESSAGE_LOGIN, string.format("You have %d reward%s in your reward chest.", rewards, rewards > 1 and "s" or ""))
 	end
-	
+
 	-- Rate events:
 	if SCHEDULE_EXP_RATE ~= 100 then
 		sendBoostMessage(player, "Exp Rate", SCHEDULE_EXP_RATE > 100)

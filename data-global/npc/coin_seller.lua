@@ -48,7 +48,7 @@ npcType.onBuyItem = function(npc, player, itemId, subType, amount, ignore, inBac
 			-- The second argument 'true' is based on existing scripts (e.g. online_coins.lua)
 			player:addTransferableCoins(amount, true)
 			player:sendTextMessage(MESSAGE_INFO_DESCR, string.format("Você comprou %d Programa Coins por %d gold.", amount, totalCost))
-			
+
 			-- Send the trade message to update the UI or confirm the transaction
 			-- We don't call npc:sellItem because we don't want to give the physical item
 		else
