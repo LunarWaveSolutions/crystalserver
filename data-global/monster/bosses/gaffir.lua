@@ -90,7 +90,7 @@ monster.loot = {
 	{ name = "springsprout rod", chance = 21000 },
 	{ name = "great spirit potion", chance = 26400 },
 	{ name = "spellbook of warding", chance = 6500 },
-	{ id = 3098, chance = 5400 }, -- ring of healing
+	{ name = "ring of healing", chance = 5400 },
 	{ name = "amulet of loss", chance = 3400 },
 	{ name = "cobra crest", chance = 900 },
 	{ name = "cobra wand", chance = 100 },

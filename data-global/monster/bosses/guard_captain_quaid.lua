@@ -89,16 +89,10 @@ monster.loot = {
 	{ name = "blue crystal shard", chance = 8600 },
 	{ name = "green crystal shard", chance = 8600 },
 	{ name = "throwing star", chance = 65000, maxCount = 6 },
-	{ name = "small topaz", chance = 9800 },
-	{ name = "sacred tree amulet", chance = 12320 },
-	{ name = "magma monocle", chance = 8000 },
-	{ name = "wood cape", chance = 17000 },
-	{ name = "crystal crossbow", chance = 16580 },
 	{ name = "skull helmet", chance = 7500 },
-	{ id = 23529, chance = 7200 }, -- collar of blue plasma
-	{ name = "cobra boots", chance = 115 },
-	{ name = "cobra hood", chance = 120 },
-	{ name = "cobra crossbow", chance = 50 },
+	{ name = "collar of blue plasma", chance = 7200 }, -- collar of blue plasma
+	{ name = "cobra boots", chance = 415 },
+	{ name = "cobra hood", chance = 420 },
 }
 
 monster.attacks = {

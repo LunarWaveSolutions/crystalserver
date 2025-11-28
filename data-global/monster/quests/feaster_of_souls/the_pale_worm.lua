@@ -94,16 +94,16 @@ monster.loot = {
 	{ name = "amber with a dragonfly", chance = 3920 },
 	{ name = "ghost claw", chance = 1960 },
 	{ name = "bloody tears", chance = 1500 },
-	{ name = "ghost chestplate", chance = 150 },
-	{ name = "spooky hood", chance = 150 },
+	{ name = "ghost chestplate", chance = 450 },
+	{ name = "spooky hood", chance = 450 },
 	{ name = "pale worm's scalp", chance = 1200 },
-	{ name = "spectral scrap of cloth", chance = 250 },
-	{ name = "fabulous legs", chance = 150 },
-	{ name = "phantasmal axe", chance = 150 },
-	{ name = "ghost backpack", chance = 150 },
-	{ name = "soulful legs", chance = 150 },
-	{ id = 32621, chance = 400 }, -- ring of souls
-	{ id = 50185, chance = 730 }, -- jade legs
+	{ name = "spectral scrap of cloth", chance = 550 },
+	{ name = "fabulous legs", chance = 450 },
+	{ name = "phantasmal axe", chance = 450 },
+	{ name = "ghost backpack", chance = 450 },
+	{ name = "soulful legs", chance = 450 },
+	{ name = "enchanted ring of souls", chance = 450 },
+	{ name = "jade legs", chance = 450 },
 }
 
 monster.attacks = {
