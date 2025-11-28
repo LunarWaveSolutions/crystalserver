@@ -1293,7 +1293,12 @@ bool Game::removeCreature(const std::shared_ptr<Creature> &creature, bool isLogo
 		creature->setMaster(nullptr);
 	}
 
-	creature->getParent()->postRemoveNotification(creature, nullptr, 0);
+	auto parent = creature->getParent();
+	if (!parent) {
+		return false;
+	}
+
+	parent->postRemoveNotification(creature, nullptr, 0);
 	afterCreatureZoneChange(creature, fromZones, {});
 
 	creature->removeList();
@@ -5741,7 +5746,10 @@ std::shared_ptr<Item> Game::getItemToLoot(const std::shared_ptr<Player> &player,
 std::shared_ptr<Container> Game::getCorpseFromItem(const std::shared_ptr<Item> &item, const Position &pos) {
 	std::shared_ptr<Container> corpse;
 	if (pos.x == 0xFFFF) {
-		corpse = item->getParent()->getContainer();
+		const auto &parent = item->getParent();
+		if (parent) {
+			corpse = parent->getContainer();
+		}
 		if (corpse && corpse->getID() == ITEM_BROWSEFIELD) {
 			corpse = item->getContainer();
 			browseField = true;
@@ -11125,7 +11133,15 @@ void Game::playerRewardChestCollect(uint32_t playerId, const Position &pos, uint
 		return;
 	}
 
-	playerRewardChest->setParent(item->getContainer()->getParent()->getTile());
+	const auto &container = item->getContainer();
+	if (container) {
+		const auto &parent = container->getParent();
+		const auto &tile = parent ? parent->getTile() : nullptr;
+		if (tile) {
+			playerRewardChest->setParent(tile);
+		}
+	}
+
 	for (const auto &[mapRewardId, reward] : player->rewardMap) {
 		reward->setParent(playerRewardChest);
 	}
