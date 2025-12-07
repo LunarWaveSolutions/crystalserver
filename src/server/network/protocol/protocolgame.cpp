@@ -566,16 +566,9 @@ void ProtocolGame::AddItem(NetworkMessage &msg, const std::shared_ptr<Item> &ite
 }
 
 void ProtocolGame::release() {
+	// dispatcher thread
 	if (player && player->client == shared_from_this()) {
-		auto p = player;
-		if (!p->isRemoved()) {
-			g_creatureEvents().playerLogout(p);
-			g_game().removeCreature(p, true);
-			g_saveManager().savePlayer(p);
-		} else {
-			g_saveManager().savePlayer(p);
-		}
-		p->client.reset();
+		player->client.reset();
 		player = nullptr;
 	}
 
@@ -1588,6 +1581,10 @@ void ProtocolGame::GetTileDescription(const std::shared_ptr<Tile> &tile, Network
 	if (creatures) {
 		bool playerAdded = false;
 		for (auto creature : std::ranges::reverse_view(*creatures)) {
+			if (!creature || creature->isRemoved() || !creature->isAlive()) {
+				continue;
+			}
+
 			if (!player->canSeeCreature(creature)) {
 				continue;
 			}
